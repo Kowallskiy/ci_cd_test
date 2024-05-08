@@ -5,10 +5,13 @@ import pandas as pd
 
 def main():
 
-    model = joblib.load("models/model.pkl")
+    model = joblib.load("models/model1.pkl")
     dataset = pd.read_csv("data/dataset.csv")
 
     _, test_X, _, test_y = train_test_split(dataset['feature'], dataset['target'], random_state=3)
+
+    test_X = test_X.values.reshape(-1, 1)
+    test_y = test_y.values.reshape(-1, 1)
 
     predictions = model.predict(test_X)
 
